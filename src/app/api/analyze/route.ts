@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     const prompt = createAnalysisPrompt(jobTitle, context, tasks);
     
     const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-4o-mini",
       messages: [
         {
           role: "system",
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
         }
       ],
       temperature: 0.1,
-      max_tokens: 4000,
+      max_tokens: 3000,
     });
 
     const analysisText = completion.choices[0]?.message?.content;

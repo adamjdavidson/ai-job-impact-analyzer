@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     const prompt = createTaskGenerationPrompt(jobTitle, context);
     
     const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-4o-mini",
       messages: [
         {
           role: "system",
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
         }
       ],
       temperature: 0.3,
-      max_tokens: 1500,
+      max_tokens: 1000,
     });
 
     const tasksText = completion.choices[0]?.message?.content;
